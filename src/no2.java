@@ -1,3 +1,5 @@
+import java.util.HashMap;
+
 /*
 * 전화번호부에 적힌 전화번호 중, 한 번호가 다른 번호의 접두어인 경우가 있는지 확인하려 합니다.
 전화번호가 다음과 같을 경우, 구조대 전화번호는 영석이의 전화번호의 접두사입니다.
@@ -31,19 +33,44 @@ public class no2 {
 
     public static void main(String[] args) {
 
-        String[] phone_book = {"119", "97674223", "1195524421"};
-        solution(phone_book);
+        String[] phone_book = {"12", "123", "1235", "567", "88"};
+        solution2(phone_book);
         // System.out.println( solution(participant, completion));
-    }
 
+    }
+    /*풀이 1 */
     public static boolean solution(String[] phone_book) {
-        boolean answer = true;
-        String a;
+        boolean answer = false;
+    long check = 0;
+    long b= phone_book[0].length();
         for(int i= 1;i<phone_book.length; i++){
-             System.out.println(phone_book[0].startsWith(phone_book[i]));
+        String c =phone_book[i].substring(0 ,(int) b);
+            if(phone_book[0].equals(c)){
+                check++;
+            }
+        }
+        if(check> 0){
+            answer = true;
+        }
+       System.out.println(answer);
+       return answer;
+    }
+HashMap hs = new HashMap();
+
+    /*풀이 2 해쉬로 */
+    public static boolean solution2(String[] phone_book) {
+        boolean answer =false;
+        HashMap<String, String> hs = new HashMap<>();
+        for(int i =0; i< phone_book.length; i++){
+            String arg = phone_book[i];
+            hs.put(arg,arg);
+            for(int j = 0; j< arg.length() ;j++){
+                String mini = arg.substring(0,i);
+                System.out.println(mini);
+            }
         }
 
-            return answer;
+        return answer;
     }
 
 }
